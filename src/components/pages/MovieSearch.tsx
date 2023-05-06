@@ -22,10 +22,10 @@ const MovieSearch = () => {
             {error && <p>{error}</p>}
             { loader && <p>loading...</p>}
             {
+                search.length ?
                 search.map(el => (
                     <div className=''>
-                        {
-                            el.poster_path !== null ?
+
                                 <div className='w-[250px] h-[470px] my-[20px] mx-[10px] border-2 border-blue-800'>
                                     <NavLink to={`/movie/${el.id}`}>
                                         <img className='ml-3 mt-[15px] cursor-pointer'
@@ -36,11 +36,10 @@ const MovieSearch = () => {
                                             <p>{el.release_date}</p>
                                         </div>
                                     </NavLink>
-                                </div> : ''
-
-                        }
+                                </div>
                     </div>
                 ))
+                    : <h1>Фильм который вы искали не найден</h1>
             }
         </div>
 

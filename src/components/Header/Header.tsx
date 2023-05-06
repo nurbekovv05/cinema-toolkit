@@ -39,20 +39,11 @@ const Header = ({dark, isDarkMode}: IDark) => {
                     <div className="max-w-screen-xl flex  items-center py-[30px]  mx-auto p-4">
                         <img className='w-[150px] cover' src={logo} alt=""/>
                         <div className="flex  items-baseline ml-[20px]">
-                            <input value={value} type="search" onKeyDown={(e)=> {
-                                switch (e.key){
-                                    case 'Enter' :
-                                        handleClick(value)
-                                        break
-                                }
-                            }} onChange={(e) => {
-                                setValue(e.target.value)
-                                setState(false)
-                            }} className={`${search ? "searchBlock" : "searchNone "} delay-300 transition-all block w-full p-3 pl-10 text-sm outline-0 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} placeholder="Search" required/>
-                            <button onClick={() => {
-                                setSearch(!search)
-                                handleClick(value)
-                            }} className="text-red-700 mx-3 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Search</button>
+                            <form action="">
+                                <label htmlFor="">
+                                    <input   type="search" onChange={(e) => navigate(`/movies/searchMovie/${e.target.value}`)} className={`${search ? "searchBlock" : "searchNone "} delay-300 transition-all block w-full p-3 pl-10 text-sm outline-0 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} placeholder="Search" required/>
+                                </label>
+                            </form>
                         </div>
                         <div className="font-medium flex  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg   md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 ml-[50px]">
                             <NavLink to={'/'} ><p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Popular</p></NavLink>
