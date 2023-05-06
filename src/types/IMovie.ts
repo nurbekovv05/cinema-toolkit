@@ -1,3 +1,5 @@
+import {VideoSlice} from "../Reducers/trailerMovie";
+
 export interface IMovie {
     id: number
     title: string
@@ -13,9 +15,10 @@ export interface IDetail {
     backdrop_path: string
     title: string
     overview: string
-    vote_overage: string
+    vote_average: any | number
     profile_path: string,
 }
+
 export interface IActors {
     id: number
     profile_path: string,
@@ -23,7 +26,7 @@ export interface IActors {
 }
 
 
-export interface IActorDetail{
+export interface IActorDetail {
     name: string
     id: number
     profile_path: string
@@ -31,3 +34,15 @@ export interface IActorDetail{
     place_of_birth: string
 }
 
+export interface ISearchMovie {
+    search: string
+    id: number
+    title: string
+    poster_path: string
+    release_date: string | number
+}
+
+export interface IVideo {
+    name: string
+    key: string
+}
