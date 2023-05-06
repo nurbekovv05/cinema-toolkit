@@ -10,6 +10,7 @@ import ActorDetail from "./components/pages/ActorDetail";
 import {useAppSelector} from "./hooks/useAppSelector";
 import axios from "axios";
 import {request} from "https";
+import MovieSearch from "./components/pages/MovieSearch";
 function App() {
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
     const dark = () => {
@@ -27,6 +28,8 @@ function App() {
                         <Route path={'/Upcoming'} element={<Upcoming/>}/>
                         <Route path={'/movie/:movieId'} element={<DetailPage/>}/>
                         <Route path={'/actorDetail/:actorId'} element={<ActorDetail/>}/>
+                        <Route path={"/movies/searchMovie/:movieName"} element={<MovieSearch/>}/>
+
                     </Routes>
                 </div>
             </div>

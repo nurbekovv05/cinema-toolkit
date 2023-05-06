@@ -6,6 +6,8 @@ import {getDetailError, getDetailMovies, getDetailSuccess} from "./DetailSlice";
 import {getActors, getActorsErr, getActorsSuccess, LanguageRec} from "./ActorSlice";
 import {getDetailActor, getDetailActorError, getDetailActorSuccess} from "./ActorDetailSlice";
 import {getActorMovie, getActorMovieError, getActorMovieSuccess} from "./ActorMovieSlice";
+import {searchError, SearchLoader, searchSuccess} from "./MovieSearchSlice";
+import {getVideoError, getVideoSuccess} from "./trailerMovie";
 
 
 export const FetchingPopular = (a: number, lan: string) => {
@@ -108,14 +110,40 @@ export const actorDetail = (id: any, lan: string) => {
 }
 
 export const actorMovieDetail = (id: any) => {
-    return async (dispatch: AppDispatch)=> {
+    return async (dispatch: AppDispatch) => {
         try {
             dispatch(getActorMovie())
             const response = await axios(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${Apikey}&language=en-US`)
             dispatch(getActorMovieSuccess(response.data.cast))
-        }catch (error: any) {
+        } catch (error: any) {
             dispatch(getActorMovieError(error.message))
         }
     }
 }
+
+export const fetchSearchMovie = (movieName: any, lan: any) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(SearchLoader())
+            const url = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${Apikey}&query=${movieName}&language=${lan}`)
+            const {data} = await url
+            dispatch(searchSuccess(data.results))
+        } catch (e) {
+            dispatch(searchError("Error..."))
+        }
+    }
+}
+
+
+export const VideoSlice = (id: any) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const responsive = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${Apikey}&language=en-US`)
+            dispatch(getVideoSuccess(responsive.data.results))
+        } catch (e: any) {
+            dispatch(getVideoError(e.message))
+        }
+    }
+}
+
 
